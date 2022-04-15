@@ -8,15 +8,26 @@
     <title>Mario Quiz</title>
 </head>
 <body>
-    <section class="bg"></section>
-    <section class="Mario">
-        <h1>Welcome to my Mario Quiz!</h1>
-        <p>This quiz will put your childhood gamer days to the test, lets see how much you really know about Mario! But make sure to answer quickly . . the clock is ticking!! Push start to begin.</p>
-        <button class="start-button">Start</button>
-    </section>
-    <section class="timer">
+    <main class="bg"></main>
+    <main id="Mario">
+        <h1 class="quiz">Welcome to my Mario Quiz!</h1>
+        <p class="quiz">This quiz will put your childhood gamer days to the test, lets see how much you really know about Mario! But make sure to answer quickly . . . the clock is ticking!! Push start to begin.</p>
+        <button id="start-button">Start</button>
+    </main>
+    <main class="container">
+        <section id="question-container" class="hide">
+            <div id="question">Question</div>
+            <div id="answer-buttons" class="btn-grid">
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 2</button>
+                <button class="btn">Answer 3</button>
+                <button class="btn">Answer 4</button>
+            </div>
+        </section>
+    </main>
+    <main class="timer">
         <div>75</div>
-    </section>
+    </main>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
