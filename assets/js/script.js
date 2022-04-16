@@ -1,4 +1,5 @@
 const startButton = document.getElementById('start-button')
+const nextButton = document.getElementById('next-button')
 const Mar = document.getElementById('Mario')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
@@ -50,6 +51,7 @@ function selectAnswer(e) {
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
+    nextButton.classList.remove('hide')
 }
 
 function setStatusClass(element, correct) {
@@ -67,12 +69,12 @@ function clearStatusClass(element) {
 }
 const questions = [
     {
-        question: 'Who is the main character of the Mario Series?',
+        question: 'what is the total amount of stars you can collect in Super Mario 64?',
         answers:[
-            {text: 'Luigi', correct: false},
-            {text: 'Wario', correct: false},
-            {text: 'Peach', correct: false},
-            {text: 'Mario', correct: true}
+            {text: '64', correct: false},
+            {text: '100', correct: false},
+            {text: '150', correct: false},
+            {text: '120', correct: true}
         ]
     },
     {
@@ -87,7 +89,7 @@ const questions = [
     {
         question: 'Who is the villain in the Mario Series?',
         answers:[
-            {text: 'Waluigi', correct: false},
+            {text: 'Professor Snape', correct: false},
             {text: 'Mumbo Jumbo', correct: false},
             {text: 'Bowser', correct: true},
             {text: 'Toad', correct: false}
