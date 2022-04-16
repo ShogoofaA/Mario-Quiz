@@ -38,6 +38,7 @@ function showQuestion(question) {
 }
 
 function resetState() {
+    nextButton.classList.add('hide')
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild
         (answerButtonsElement.firstChild)
@@ -47,29 +48,14 @@ function resetState() {
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
-    setStatusClass(document.body, correct)
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
     nextButton.classList.remove('hide')
 }
-
-function setStatusClass(element, correct) {
-    clearStatusClass(element)
-    if (correct) {
-        element.classList.add('correct')
-    } else {
-        element.classList.add('wrong')
-    }
-}
-
-function clearStatusClass(element) {
-    element.classList.remove('correct')
-    element.classList.remove('wrong')
-}
 const questions = [
     {
-        question: 'what is the total amount of stars you can collect in Super Mario 64?',
+        question: 'What is the total amount of stars you can collect in Super Mario 64?',
         answers:[
             {text: '64', correct: false},
             {text: '100', correct: false},
@@ -96,7 +82,7 @@ const questions = [
         ]
     },
     {
-        question: 'In Super Mario 64 in the Cool Cool Mountain course, who do you have to race to get a star?',
+        question: 'In Super Mario 64 in the Cool, Cool Mountain course, who do you have to race to get a star?',
         answers:[
             {text: 'Link', correct: false},
             {text: 'A Big Penguin', correct: true},
