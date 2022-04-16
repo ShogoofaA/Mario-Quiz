@@ -13,13 +13,15 @@
         <h1 class="quiz">Welcome to my Mario Quiz!</h1>
         <p class="quiz">This quiz will put your childhood gamer days to the test, lets see how much you really know about Mario! But make sure to answer quickly . . . the clock is ticking!! Push start to begin.</p>
         <button id="start-button">Start</button>
-        <button id="next-button" class="hide">Next</button>
     </main>
     <main id="audio">
         <audio controls>
             <source src="./assets/images/SuperMarioSound.mp3" type="audio/ogg">
             <source src="./assets/images/SuperMarioSound.mp3" type="audio/mpeg">
         </audio>
+    </main>
+    <main>
+        <button id="next-button" class="hide">Next</button>
     </main>
     <main class="container">
         <section id="question-container" class="hide">
@@ -39,7 +41,7 @@
             <input type="submit" class="submit">
         </p>
         </main>
-    <main class="timer">
+    <main id="timer">
         <div>75</div>
     </main>
     <script src="./assets/js/script.js"></script>

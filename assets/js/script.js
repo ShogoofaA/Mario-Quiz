@@ -1,21 +1,31 @@
-const startButton = document.getElementById('start-button')
-const nextButton = document.getElementById('next-button')
-const Mar = document.getElementById('Mario')
-const questionContainerElement = document.getElementById('question-container')
-const questionElement = document.getElementById('question')
-const answerButtonsElement = document.getElementById('answer-buttons')
+const startButton = document.getElementById('start-button');
+const nextButton = document.getElementById('next-button');
+const Mar = document.getElementById('Mario');
+const questionContainerElement = document.getElementById('question-container');
+const questionElement = document.getElementById('question');
+const answerButtonsElement = document.getElementById('answer-buttons');
+const submit = document.getElementById('Submitform');
+const timer = document.getElementById('timer');
 
-let shuffledQuestions, currentQuestionIndex
+let shuffledQuestions, currentQuestionIndex;
+let numCorrect = 0;
 
 startButton.addEventListener('click', startGame)
+nextButton.addEventListener('click', () => {
+    currentQuestionIndex++
+    setNextQuestion()
+})
 
 function startGame() {
     startButton.classList.add('hide')
+    nextButton.classList.remove('hide')
     Mar.classList.add('hide')
+    timerCount = 75;
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
     questionContainerElement.classList.remove('hide')
     setNextQuestion()
+    startTimer()
 }
 
 function setNextQuestion() {
@@ -38,7 +48,6 @@ function showQuestion(question) {
 }
 
 function resetState() {
-    nextButton.classList.add('hide')
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild
         (answerButtonsElement.firstChild)
@@ -51,62 +60,80 @@ function selectAnswer(e) {
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
-    nextButton.classList.remove('hide')
+}
+function setStatusClass(element, correct) {
+    clearStatusClass(element)
+    if (correct) {
+        element.classList.add('correct')
+    } else {
+        element.classList.add('wrong')
+    }
+}
+function clearStatusClass(element) {
+    element.classList.remove('correct')
+    element.classList.remove('wrong')
 }
 const questions = [
     {
         question: 'What is the total amount of stars you can collect in Super Mario 64?',
         answers:[
-            {text: '64', correct: false},
-            {text: '100', correct: false},
-            {text: '150', correct: false},
-            {text: '120', correct: true}
-        ]
+            {text: '64'},
+            {text: '100'},
+            {text: '150'},
+            {text: '120'}
+        ],
+        correct: 3
     },
     {
         question: 'In Paper Mario: The Thousand Year Door, when do you first get baby Yoshi',
         answers:[
-            {text: 'Glitzville', correct: true},
-            {text: 'Twilight Town', correct: false},
-            {text: 'Rogueport', correct: false},
-            {text: 'Pit of 100 trials', correct: false}
-        ]
+            {text: 'Glitzville'},
+            {text: 'Twilight Town'},
+            {text: 'Rogueport'},
+            {text: 'Pit of 100 trials'}
+        ],
+        correct: 0
     },
     {
         question: 'Who is the villain in the Mario Series?',
         answers:[
-            {text: 'Professor Snape', correct: false},
-            {text: 'Mumbo Jumbo', correct: false},
-            {text: 'Bowser', correct: true},
-            {text: 'Toad', correct: false}
-        ]
+            {text: 'Professor Snape'},
+            {text: 'Mumbo Jumbo'},
+            {text: 'Bowser'},
+            {text: 'Toad'}
+        ], 
+        correct: 2
     },
     {
         question: 'In Super Mario 64 in the Cool, Cool Mountain course, who do you have to race to get a star?',
         answers:[
-            {text: 'Link', correct: false},
-            {text: 'A Big Penguin', correct: true},
-            {text: 'Gruntilda', correct: false},
-            {text: 'Naruto', correct: false}
-        ]
+            {text: 'Link'},
+            {text: 'A Big Penguin'},
+            {text: 'Gruntilda'},
+            {text: 'Naruto'}
+        ],
+        correct: 1
     },
     {
         question: 'What is Marios catchphrase?',
         answers:[
-            {text: 'Oh Yeah! Luigi Time!', correct: false},
-            {text: 'Okie Dokie', correct: false},
-            {text: 'Pizza Dough!', correct: false},
-            {text: 'Oh yeah! Mario Time', correct: true}
-        ]
+            {text: 'Oh Yeah! Luigi Time!'},
+            {text: 'Okie Dokie'},
+            {text: 'Pizza Dough!'},
+            {text: 'Oh yeah! Mario Time'}
+        ],
+        correct: 3
     }
 ]
 
-function time() {
-    let timeInterval = setInterval(function () {
-        timeLeft--;
-        time.textcontent = timeLeft
-        if (timeLeft === 0) {
-            clearInterval(timeInterval);
-        }
+function startTimer() {
+    timer = setInterval(function() {
+      timerCount--;
+      timer.textContent = timerCount;
+      if (timerCount === 0) {
+        clearInterval(timer);
+        alert('Looks like you ran out of time, back to the start with you!');
+        return window.location.assign('index.html');
+      }
     }, 1000);
-}
+  }

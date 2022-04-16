@@ -27,7 +27,7 @@ body {
     color: rgb(255, 251, 0);
 }
 
-.timer {
+#timer {
     position: absolute;
     top: 0;
     right: 0;
@@ -41,6 +41,9 @@ body {
     font-size: 25px;
 }
 #next-button {
+    position: absolute;
+    bottom: 20%;
+    right: 40%;
     text-align: center;
     width: 10%;
     padding: 5px 10px;
