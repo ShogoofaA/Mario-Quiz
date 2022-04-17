@@ -6,15 +6,30 @@ const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
 const submit = document.getElementById('Submitform');
 const timer = document.getElementById('timer');
+const Score = document.getElementById('theScore')
+const Result = document.getElementById('Results')
+const text = document.getElementById('submits')
+const selectedAnswer = []
+
 
 let shuffledQuestions, currentQuestionIndex;
 let numCorrect = 0;
+let questionCount = 0;
 
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++
-    setNextQuestion()
+    if (questionCount < 4) {
+        questionCount++
+        setNextQuestion()
+    } else if (questionCount === 4) {
+        questionContainerElement.classList.add('hide')
+        submit.classList.remove('hide')
+        nextButton.classList.add('hide')
+        timer.classList.add('hide')
+    }
 })
+text.addEventListener('click', showResults, console.log('clicked'))
 
 function startGame() {
     startButton.classList.add('hide')
@@ -53,13 +68,11 @@ function resetState() {
         (answerButtonsElement.firstChild)
     }
 }
-
 function selectAnswer(e) {
     const selectedButton = e.target
-    const correct = selectedButton.dataset.correct
-    Array.from(answerButtonsElement.children).forEach(button => {
-        setStatusClass(button, button.dataset.correct)
-    })
+    let select = selectedButton.textContent
+    selectedAnswer.push(select)
+    selectedButton.classList.add('selectAnswer')
 }
 function setStatusClass(element, correct) {
     clearStatusClass(element)
@@ -73,6 +86,17 @@ function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
 }
+function showResults() {
+    submit.classList.add('hide')
+    Result.classList.remove('hide')
+
+// check every correct answer against every submitted answer
+    correctAnswers.forEach(item => {
+        if (correctAnswers.includes(item)) numCorrect++
+    })
+// if answer= correct +1 for their score else no point after all has been tallied need to place into my span of theScore
+    Score.innerText(numCorrect + "/5!")
+}
 const questions = [
     {
         question: 'What is the total amount of stars you can collect in Super Mario 64?',
@@ -82,7 +106,6 @@ const questions = [
             {text: '150'},
             {text: '120'}
         ],
-        correct: 3
     },
     {
         question: 'In Paper Mario: The Thousand Year Door, when do you first get baby Yoshi',
@@ -92,7 +115,6 @@ const questions = [
             {text: 'Rogueport'},
             {text: 'Pit of 100 trials'}
         ],
-        correct: 0
     },
     {
         question: 'Who is the villain in the Mario Series?',
@@ -102,7 +124,6 @@ const questions = [
             {text: 'Bowser'},
             {text: 'Toad'}
         ], 
-        correct: 2
     },
     {
         question: 'In Super Mario 64 in the Cool, Cool Mountain course, who do you have to race to get a star?',
@@ -112,7 +133,6 @@ const questions = [
             {text: 'Gruntilda'},
             {text: 'Naruto'}
         ],
-        correct: 1
     },
     {
         question: 'What is Marios catchphrase?',
@@ -122,9 +142,9 @@ const questions = [
             {text: 'Pizza Dough!'},
             {text: 'Oh yeah! Mario Time'}
         ],
-        correct: 3
     }
 ]
+const correctAnswers = ['120', 'Glitzville', 'Bowser', 'A Big Penguin', 'Oh yeah! Mario Time']
 
 function startTimer() {
     timer = setInterval(function() {
