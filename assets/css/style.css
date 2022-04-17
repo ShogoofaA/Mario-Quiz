@@ -25,8 +25,8 @@ body {
     margin-top: 50px;
     font-family: fantasy;
     color: rgb(255, 251, 0);
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
 }
-
 #timer {
     position: absolute;
     top: 0;
@@ -70,7 +70,9 @@ body {
     align-items: center;
     margin-right: 350px;
     color: rgb(251, 255, 0);
-    font-size: 40px
+    font-size: 40px;
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+
 }
 .selectAnswer {
     background-color: blue;
@@ -83,6 +85,7 @@ body {
     padding: 10px;
     font-size: 40px;
     color: rgb(251, 255, 0);
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
 }
 .btn-grid {
     display: grid;
@@ -101,6 +104,7 @@ body {
     margin-right: 350px;
     color: rgb(251, 255, 0);
     font-size: 40px;
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
 }
 .initials {
     position: relative;
@@ -109,6 +113,7 @@ body {
     align-items: center;
     color: rgb(251, 255, 0);
     font-size: 40px;
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
 }
 .submit:hover {
     background-color: blue;

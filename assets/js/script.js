@@ -94,7 +94,7 @@ function showResults() {
         if (correctAnswers.includes(item)) numCorrect++
     })
 // if answer= correct +1 for their score else no point after all has been tallied need to place into my span of theScore
-    Score.innerText += numCorrect
+    Score.innerText += numCorrect + "!"
 }
 const questions = [
     {
