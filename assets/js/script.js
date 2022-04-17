@@ -89,13 +89,12 @@ function clearStatusClass(element) {
 function showResults() {
     submit.classList.add('hide')
     Result.classList.remove('hide')
-
 // check every correct answer against every submitted answer
     correctAnswers.forEach(item => {
         if (correctAnswers.includes(item)) numCorrect++
     })
 // if answer= correct +1 for their score else no point after all has been tallied need to place into my span of theScore
-    Score.innerText(numCorrect + "/5!")
+    Score.innerText += numCorrect
 }
 const questions = [
     {
@@ -145,7 +144,7 @@ const questions = [
     }
 ]
 const correctAnswers = ['120', 'Glitzville', 'Bowser', 'A Big Penguin', 'Oh yeah! Mario Time']
-
+  
 function startTimer() {
     timer = setInterval(function() {
       timerCount--;
