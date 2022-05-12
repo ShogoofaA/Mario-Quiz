@@ -9,6 +9,7 @@ const timer = document.getElementById('timer');
 const Score = document.getElementById('theScore')
 const Result = document.getElementById('Results')
 const text = document.getElementById('submits')
+var interval ;
 const selectedAnswer = []
 
 
@@ -73,6 +74,10 @@ function selectAnswer(e) {
     let select = selectedButton.textContent
     selectedAnswer.push(select)
     selectedButton.classList.add('selectAnswer')
+    if (!correctAnswers.includes(select)) {
+        timerCount -= 10;
+    }
+
 }
 function setStatusClass(element, correct) {
     clearStatusClass(element)
@@ -87,14 +92,15 @@ function clearStatusClass(element) {
     element.classList.remove('wrong')
 }
 function showResults() {
+    clearInterval(interval)
     submit.classList.add('hide')
     Result.classList.remove('hide')
 // check every correct answer against every submitted answer
     correctAnswers.forEach(item => {
-        if (correctAnswers.includes(item)) numCorrect++
+        if (selectedAnswer.includes(item)) numCorrect++
     })
 // if answer= correct +1 for their score else no point after all has been tallied need to place into my span of theScore
-    Score.innerText += numCorrect + "!"
+    Score.innerText += timerCount + "!"
 }
 const questions = [
     {
@@ -146,11 +152,11 @@ const questions = [
 const correctAnswers = ['120', 'Glitzville', 'Bowser', 'A Big Penguin', 'Oh yeah! Mario Time']
   
 function startTimer() {
-    timer = setInterval(function() {
+    interval = setInterval(function() {
       timerCount--;
       timer.textContent = timerCount;
       if (timerCount === 0) {
-        clearInterval(timer);
+        clearInterval(interval);
         alert('Looks like you ran out of time, back to the start with you!');
         return window.location.assign('index.html');
       }
